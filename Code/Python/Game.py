@@ -56,9 +56,7 @@ class ball:
             self.vx *= -bounce
 
     def check_collision(self, other):
-        """
-        Handles collision of this (inner) ball against another ball acting as a containment circle.
-        """
+        # Handles collision of (inner) ball against another ball acting as a containment circle.
 
         # center of the outer ball
         cx = other.xpos
