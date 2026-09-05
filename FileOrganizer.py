@@ -15,10 +15,6 @@ file_Types = {
 
 create_folder_path = r'c:\Users\chipp_hqhjylc\Downloads'
 
-#list_of_files = ["Code.jpg", "Ex.mp4", "Youtube.txt", "photo.jpg", 
-#                "image.png", "animation.gif", "picture.jpeg", 
-#                "Main.java", "program.exe", "screenshot.jpg", "icon.png"] # List of example files to sort
-
 try: # Attempts to create folders in downloads path
     for i in file_Types:
         create_folder_path = (fr"{create_folder_path}\{file_Types[i]}")
