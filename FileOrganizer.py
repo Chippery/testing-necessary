@@ -9,12 +9,15 @@ file_Types = {
     ".exe" : "Executable",
     ".ini" : "Initialization",
     ".java" : "Java_File",
-    ".jpeg" : "Images"
+    ".jpeg" : "Images",
+    ".png" : "Images"
 }
 
 create_folder_path = r'c:\Users\chipp_hqhjylc\Downloads'
 
-list_of_files = ["Code.jpg", "Ex.mp4", "Youtube.txt"] # List of example files to sort
+list_of_files = ["Code.jpg", "Ex.mp4", "Youtube.txt", "photo.jpg", 
+                "image.png", "animation.gif", "picture.jpeg", 
+                "Main.java", "program.exe", "screenshot.jpg", "icon.png"] # List of example files to sort
 
 for i in list_of_files: # Creates files in downloads path
     with open(os.path.join(create_folder_path, i), "w") as file:
