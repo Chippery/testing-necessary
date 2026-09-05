@@ -15,13 +15,9 @@ file_Types = {
 
 create_folder_path = r'c:\Users\chipp_hqhjylc\Downloads'
 
-list_of_files = ["Code.jpg", "Ex.mp4", "Youtube.txt", "photo.jpg", 
-                "image.png", "animation.gif", "picture.jpeg", 
-                "Main.java", "program.exe", "screenshot.jpg", "icon.png"] # List of example files to sort
-
-for i in list_of_files: # Creates files in downloads path
-    with open(os.path.join(create_folder_path, i), "w") as file:
-        file.write("print('Hello from the dynamically created file!')\n")
+#list_of_files = ["Code.jpg", "Ex.mp4", "Youtube.txt", "photo.jpg", 
+#                "image.png", "animation.gif", "picture.jpeg", 
+#                "Main.java", "program.exe", "screenshot.jpg", "icon.png"] # List of example files to sort
 
 try: # Attempts to create folders in downloads path
     for i in file_Types:
