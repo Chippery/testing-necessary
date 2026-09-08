@@ -1,7 +1,7 @@
 import os 
 import shutil
 
-file_Types = {
+file_Types = { # Values will be made into folders
     ".jpg" : "Images",
     ".mp4" : "Videos",
     ".gif" : "Gifs",
@@ -10,20 +10,20 @@ file_Types = {
     ".ini" : "Initialization",
     ".java" : "Java_File",
     ".jpeg" : "Images",
-    ".png" : "Images"
+    ".png" : "Images",
+    ".zip" : "Zips",
+    ".msi" : "Executable"
 }
 
-create_folder_path = r'c:\Users\chipp_hqhjylc\Downloads'
+create_folder_path = r'c:\Users\chipp_hqhjylc\Downloads' # Change with path you want to clean up
 
-try: # Attempts to create folders in downloads path
-    for i in file_Types:
-        create_folder_path = (fr"{create_folder_path}\{file_Types[i]}")
-        os.makedirs(create_folder_path, exist_ok=False)
-        create_folder_path = r'c:\Users\chipp_hqhjylc\Downloads'
-except FileExistsError as e:
-    print("Folder Already Exists.")
+# Attempts to create folders in downloads path
+for i in file_Types:
+    create_folder_path = (fr"{create_folder_path}\{file_Types[i]}")
+    os.makedirs(create_folder_path, exist_ok=True)
+    create_folder_path = r'c:\Users\chipp_hqhjylc\Downloads'
 
-create_folder_path = r'c:\Users\chipp_hqhjylc\Downloads'
+create_folder_path = r'c:\Users\chipp_hqhjylc\Downloads' # Path you want to clean up
 
 listdir = os.listdir(create_folder_path)
 file_list = []
@@ -41,5 +41,6 @@ for eachFile in file_list: # Iterate through example files to sort
 
     try:
         shutil.move(example_src, example_dst) # Move src to dst
+        print(f"Moved {eachFile} to {file_Types[os.path.splitext(eachFile)[1]]}")
     except shutil.Error as e:
         print("Some stupid file already exists, can't move it.") # Can't and Won't move if file already exists
