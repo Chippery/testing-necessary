@@ -44,4 +44,8 @@ for eachFile in file_list: # Iterate through example files to sort
         shutil.move(example_src, example_dst) # Move src to dst
         print(f"Moved {eachFile} to {file_Types[os.path.splitext(eachFile)[1]]}")
     except shutil.Error as e:
-        print("Some stupid file already exists, can't move it.") # Can't and Won't move if file already exists
+        if eachFile in os.listdir(example_dst): # Checks if file is in directory folder
+            os.remove(example_src)
+            print(f"Removed {eachFile}, duplicate")
+        else:
+            print(fr"Some stupid file named {eachFile} already exists inside {file_Types[os.path.splitext(eachFile)[1]]}, can't move it.") # Can't and Won't move if file already exists
