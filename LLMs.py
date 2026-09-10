@@ -6,16 +6,12 @@ with open("key.json", "r") as file:
     data = json.load(file)
 
 client = OpenAI(
-    base_url="https://api.aionlabs.ai/v1",
-    api_key=data["key"])
-
+    base_url="https://api.aionlabs.ai/v1", # base_url will be your ai's url
+    api_key=data["key"] # Key will be your api's key
+    )
 
 folder_path = r'c:\Users\chipp_hqhjylc\Downloads'
 folder = Path(folder_path)
-
-#for file in folder.iterdir():
-#    print(file)
-
     
 response = client.chat.completions.create(
     model="aion-labs/aion-2.0",
