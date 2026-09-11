@@ -3,6 +3,7 @@ __pycache__/
 *.py[codz]
 *$py.class
 key.json
+fileRecognize.json
 
 # C extensions
 *.so
