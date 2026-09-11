@@ -22,7 +22,7 @@ print(file_list)
 listNum = [0, 3, 4, 1, 5]
 
 for index, item in enumerate(file_list):
-    print(folderNames["categories"][listNum[index]]["name"])
+    print(listNum[index], item, folderNames["categories"][listNum[index]]["name"])
 
 # client = OpenAI(
 #     base_url="https://api.groq.com/openai/v1", # base_url will be your ai's url
