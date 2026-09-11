@@ -1,51 +1,55 @@
+from openai import OpenAI
+from pathlib import Path
 import os 
 import shutil
+import json
+import ast
 
-file_Types = { # Values will be made into folders
-    ".jpg" : "Images",
-    ".mp4" : "Videos",
-    ".gif" : "Gifs",
-    ".txt" : "Text",
-    ".exe" : "Executable",
-    ".ini" : "Initialization",
-    ".java" : "Java_File",
-    ".jpeg" : "Images",
-    ".png" : "Images",
-    ".zip" : "Zips",
-    ".msi" : "Executable"
-}
-
+counter = 0
 create_folder_path = r'c:\Users\chipp_hqhjylc\Downloads' # Change with path you want to clean up
 
-# Attempts to create folders in downloads path
-for i in file_Types:
-    create_folder_path = (fr"{create_folder_path}\{file_Types[i]}")
-    os.makedirs(create_folder_path, exist_ok=True)
-    create_folder_path = r'c:\Users\chipp_hqhjylc\Downloads'
-create_folder_path = r'c:\Users\chipp_hqhjylc\Downloads' # Path you want to clean up
+with open("key.json", "r") as file:
+    data = json.load(file)
+    
+with open("fileRecognize.json", "r") as Fold:
+    folderNames = json.load(Fold)
+
+for i in folderNames["categories"]: # Attempts to create folders in downloads path
+    folder_path_name = (fr"{create_folder_path}\{folderNames["categories"][counter]["name"]}") # Set full path to make folder
+    os.makedirs(folder_path_name, exist_ok=True)
+    counter += 1
 
 listdir = os.listdir(create_folder_path)
 file_list = []
 
-for dir in listdir:
-    if os.path.isfile(fr"{create_folder_path}\{dir}") and dir not in file_Types.values():
-        file_list.append(dir)
+example_src = (fr"{create_folder_path}\{eachFile}") # src = path + file name
+example_dst = (fr"{create_folder_path}\{file_Types[os.path.splitext(eachFile)[1]]}") # dst = path + folder name
 
-for eachFile in file_list: # Iterate through example files to sort
-    if os.path.splitext(eachFile)[1] not in file_Types.keys():
-        file_Types.update({os.path.splitext(eachFile)[1] : os.path.splitext(eachFile)[1][1:].capitalize()}) # Add unrecognize file type to dict 
-        os.makedirs(fr"{create_folder_path}\{os.path.splitext(eachFile)[1][1:].capitalize()}", exist_ok=True) # Make folder of unrecognized file type
-        print(f'''Make new folder "{file_Types[os.path.splitext(eachFile)[1]]}"''')
+client = OpenAI(
+    base_url="https://api.groq.com/openai/v1", # base_url will be your ai's url
+    api_key=data["key"] # Key will be your api's key
+    )
 
-    example_src = (fr"{create_folder_path}\{eachFile}") # src = path + file name
-    example_dst = (fr"{create_folder_path}\{file_Types[os.path.splitext(eachFile)[1]]}") # dst = path + folder name
+folder_path = r'c:\Users\chipp_hqhjylc\Downloads'
+folder = Path(folder_path)
+    
+response = client.chat.completions.create(
+    model="groq/compound-mini",
+    messages=[{"role": "user", "content": 
+            f"Read the files: {file_list} and return JUST a list with each index being 0-11 for each file depending on their file type based"
+            f"on {[cat["name"] for cat in folderNames["categories"]]}, these files types {[ext["extensions"] for ext in folderNames["categories"]]} are" 
+             "assigned to the same index as the folder indexes, use them to help you sort."}],
+    temperature=0.7
+)
+AI_response = ast.literal_eval(response.choices[0].message.content)
+print(AI_response)
 
-    try:
-        shutil.move(example_src, example_dst) # Move src to dst
-        print(f"Moved {eachFile} to {file_Types[os.path.splitext(eachFile)[1]]}")
-    except shutil.Error as e:
-        if eachFile in os.listdir(example_dst): # Checks if file is in directory folder
-            os.remove(example_src)
-            print(f"Removed {eachFile}, duplicate")
-        else:
-            print(fr"Some stupid file named {eachFile} already exists inside {file_Types[os.path.splitext(eachFile)[1]]}, can't move it.") # Can't and Won't move if file already exists
+try:
+    shutil.move(example_src, example_dst) # Move src to dst
+    print(f"Moved {eachFile} to {file_Types[os.path.splitext(eachFile)[1]]}")
+except shutil.Error as e:
+    if eachFile in os.listdir(example_dst): # Checks if file is in directory folder
+        os.remove(example_src)
+        print(f"Removed {eachFile}, duplicate")
+    else:
+        print(fr"Some stupid file named {eachFile} already exists inside {file_Types[os.path.splitext(eachFile)[1]]}, can't move it.") # Can't and Won't move if file already exists

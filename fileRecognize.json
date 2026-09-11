@@ -1,0 +1,136 @@
+{
+  "directory": "c:\\Users\\chipp_hqhjylc\\Downloads",
+  "version": "1.0",
+  "description": "Organizational rules for sorting files in the Downloads directory",
+  "categories": [
+    {
+      "name": "Documents",
+      "folder": "Documents",
+      "extensions": [
+        ".pdf", ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx",
+        ".txt", ".rtf", ".odt", ".ods", ".odp", ".csv", ".tsv",
+        ".md", ".tex", ".log", ".xml", ".json", ".yaml", ".yml"
+      ],
+      "keywords": ["report", "invoice", "contract", "resume", "letter", "form"]
+    },
+    {
+      "name": "Images",
+      "folder": "Images",
+      "extensions": [
+        ".jpg", ".jpeg", ".png", ".gif", ".bmp", ".tiff", ".tif",
+        ".webp", ".svg", ".ico", ".heic", ".heif", ".psd", ".ai",
+        ".eps", ".raw", ".cr2", ".nef"
+      ],
+      "keywords": ["photo", "screenshot", "image", "picture", "scan"]
+    },
+    {
+      "name": "Videos",
+      "folder": "Videos",
+      "extensions": [
+        ".mp4", ".avi", ".mkv", ".mov", ".wmv", ".flv", ".webm",
+        ".m4v", ".mpg", ".mpeg", ".3gp", ".ogv", ".ts", ".mts"
+      ],
+      "keywords": ["video", "movie", "clip", "recording", "webcam"]
+    },
+    {
+      "name": "Audio",
+      "folder": "Audio",
+      "extensions": [
+        ".mp3", ".wav", ".flac", ".aac", ".ogg", ".wma", ".m4a",
+        ".opus", ".mid", ".midi", ".ra", ".rm"
+      ],
+      "keywords": ["music", "song", "podcast", "audio", "recording", "voice"]
+    },
+    {
+      "name": "Archives",
+      "folder": "Archives",
+      "extensions": [
+        ".zip", ".rar", ".7z", ".tar", ".gz", ".bz2", ".xz",
+        ".z", ".tgz", ".tbz2", ".iso", ".vhd", ".vmdk"
+      ],
+      "keywords": ["archive", "backup", "compressed", "package"]
+    },
+    {
+      "name": "Installers",
+      "folder": "Installers",
+      "extensions": [
+        ".exe", ".msi", ".dmg", ".pkg", ".run", ".bin",
+        ".apk", ".ipa", ".deb", ".rpm", ".snap", ".flatpakref"
+      ],
+      "keywords": ["setup", "install", "update", "patch", "driver"]
+    },
+    {
+      "name": "Programs",
+      "folder": "Programs",
+      "extensions": [
+        ".py", ".js", ".ts", ".html", ".css", ".scss", ".sass",
+        ".php", ".rb", ".java", ".class", ".jar", ".c", ".cpp",
+        ".h", ".hpp", ".swift", ".go", ".rs", ".wasm", ".wasm32",
+        ".sh", ".bat", ".ps1", ".vbs", ".lua", ".pl", ".pm"
+      ],
+      "keywords": ["script", "code", "source", "program", "app"]
+    },
+    {
+      "name": "Data",
+      "folder": "Data",
+      "extensions": [
+        ".sql", ".db", ".sqlite", ".mdb", ".accdb", ".dbf",
+        ".csv", ".tsv", ".json", ".xml", ".yaml", ".yml",
+        ".dat", ".bin", ".dump", ".rdb", ".aof"
+      ],
+      "keywords": ["database", "data", "export", "dump", "backup"]
+    },
+    {
+      "name": "Torrents",
+      "folder": "Torrents",
+      "extensions": [
+        ".torrent", ".magnet"
+      ],
+      "keywords": ["torrent", "download"]
+    },
+    {
+      "name": "Fonts",
+      "folder": "Fonts",
+      "extensions": [
+        ".ttf", ".otf", ".woff", ".woff2", ".eot", ".fnt"
+      ],
+      "keywords": ["font", "typeface"]
+    },
+    {
+      "name": "Config",
+      "folder": "Config",
+      "extensions": [
+        ".cfg", ".conf", ".ini", ".reg", ".env", ".example"
+      ],
+      "keywords": ["setting", "config", "preference"]
+    },
+    {
+      "name": "Miscellaneous",
+      "folder": "Misc",
+      "extensions": [],
+      "keywords": [],
+      "catch_all": true
+    }
+  ],
+  "rules": {
+    "overwrite_existing": false,
+    "create_folders": true,
+    "sort_by_modification_date": true,
+    "case_sensitive": false,
+    "move_empty_folders": false,
+    "clean_temp": true,
+    "temp_extensions": [".tmp", ".temp", ".part", ".crdownload"],
+    "exclude_patterns": [
+      "desktop.ini",
+      "Thumbs.db",
+      ".DS_Store",
+      "~*",
+      "*.tmp"
+    ]
+  },
+  "metadata": {
+    "author": "User",
+    "created": "2025-03-23",
+    "notes": "This JSON can be used with a file organizer script. Each category defines where files go based on extension and/or keyword matching. The 'catch_all' category handles anything not matched. Extensions and keywords can be edited freely."
+  }
+}
