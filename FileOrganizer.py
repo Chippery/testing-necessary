@@ -41,7 +41,6 @@ response = client.chat.completions.create(
 AI_response = ast.literal_eval(response.choices[0].message.content)
 
 for index, item in enumerate(file_list): # Indexing through files not in an folders
-    print(folderNames["categories"][AI_response[index]]["name"])
     try:
         shutil.move(fr"{create_folder_path}\{item}", fr"{create_folder_path}\{folderNames["categories"][AI_response[index]]["name"]}") # Move src to dst
         print(fr"Moved {item} to {create_folder_path}\{folderNames["categories"][AI_response[index]]["name"]}")
