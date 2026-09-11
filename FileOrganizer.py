@@ -44,7 +44,7 @@ for index, item in enumerate(file_list): # Indexing through files not in an fold
     print(folderNames["categories"][AI_response[index]]["name"])
     try:
         shutil.move(fr"{create_folder_path}\{item}", fr"{create_folder_path}\{folderNames["categories"][AI_response[index]]["name"]}") # Move src to dst
-        print(f"Moved {item} to {create_folder_path}\{folderNames["categories"][AI_response[index]]["name"]}")
+        print(fr"Moved {item} to {create_folder_path}\{folderNames["categories"][AI_response[index]]["name"]}")
     except shutil.Error as e:
         print(fr"Some stupid file named {item} already exists inside {create_folder_path}\{folderNames["categories"][AI_response[index]]["name"]}, can't move it.") # Can't and Won't move if file already exists
 print(AI_response)
