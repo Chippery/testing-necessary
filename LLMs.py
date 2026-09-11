@@ -1,12 +1,26 @@
 from openai import OpenAI
 from pathlib import Path
 import json
+import os
+import ast
 
 with open("key.json", "r") as file:
     data = json.load(file)
 
+with open("fileRecognize.json", "r") as Fold:
+    folderNames = json.load(Fold)
+
+create_folder_path = r'c:\Users\chipp_hqhjylc\Downloads'
+listdir = os.listdir(create_folder_path)
+file_list = []
+
+for eachFile in listdir:
+    if os.path.isfile(fr"{create_folder_path}\{eachFile}"):
+        file_list.append(eachFile)
+print(file_list)
+
 client = OpenAI(
-    base_url="https://api.aionlabs.ai/v1", # base_url will be your ai's url
+    base_url="https://api.groq.com/openai/v1", # base_url will be your ai's url
     api_key=data["key"] # Key will be your api's key
     )
 
@@ -14,8 +28,12 @@ folder_path = r'c:\Users\chipp_hqhjylc\Downloads'
 folder = Path(folder_path)
     
 response = client.chat.completions.create(
-    model="aion-labs/aion-2.0",
-    messages=[{"role": "user", "content": f""}],
-    temperature=0.7 # Using Aion, need to pass temperature variable
+    model="groq/compound-mini",
+    messages=[{"role": "user", "content": 
+            f"Read the files: {file_list} and return JUST a list with each index being 0-11 for each file depending on their file type based"
+            f"on {[cat["name"] for cat in folderNames["categories"]]}, these files types {[ext["extensions"] for ext in folderNames["categories"]]} are" 
+             "assigned to the same index as the folder indexes, use them to help you sort."}],
+    temperature=0.7
 )
-print(response.choices[0].message.content)
+AI_response = ast.literal_eval(response.choices[0].message.content)
+print(AI_response)
