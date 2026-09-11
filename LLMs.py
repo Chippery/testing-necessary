@@ -23,9 +23,6 @@ client = OpenAI(
     base_url="https://api.groq.com/openai/v1", # base_url will be your ai's url
     api_key=data["key"] # Key will be your api's key
     )
-
-folder_path = r'c:\Users\chipp_hqhjylc\Downloads'
-folder = Path(folder_path)
     
 response = client.chat.completions.create(
     model="groq/compound-mini",
