@@ -1,18 +1,16 @@
 from openai import OpenAI
-import os 
-import shutil
-import json
-import ast
+import os, shutil, json, ast, time
 
 counter = 0
 create_folder_path = r'c:\Users\chipp_hqhjylc\Downloads' # Change with path you want to clean up
+json_dir = r'D:\testing-necessary' # Directory json files are in
 listdir = os.listdir(create_folder_path)
 file_list = []
 
-with open("key.json", "r") as file:
+with open(fr"{json_dir}\key.json", "r") as file:
     data = json.load(file)
 
-with open("fileRecognize.json", "r") as Fold:
+with open(fr"{json_dir}\fileRecognize.json", "r") as Fold:
     folderNames = json.load(Fold)
 
 for i in folderNames["categories"]: # Attempts to create folders in downloads path
@@ -48,3 +46,5 @@ for index, item in enumerate(file_list): # Indexing through files not in an fold
         print(fr"Some stupid file named {item} already exists inside {create_folder_path}\{folderNames["categories"][AI_response[index]]["name"]}, can't move it.") # Can't and Won't move if file already exists
 if AI_response != []:
     print(AI_response)
+
+time.sleep(3) # Make Executable readable
